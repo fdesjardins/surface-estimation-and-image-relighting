@@ -1,0 +1,34 @@
+uniform vec4 global_ambient;
+uniform vec4 light_ambient;
+uniform vec4 light_diffuse;
+uniform vec3 light_pos;
+uniform vec4 material_ambient;
+uniform vec4 material_diffuse;
+uniform float time;
+
+varying vec4 vtxColor;
+varying vec4 baseColor;
+varying float dist;
+
+varying vec3 N;
+varying vec3 L;
+varying vec3 E;
+
+void main()
+{
+    vec3 Normal = normalize(N);
+    vec3 Light  = normalize(L);
+    vec3 Eye    = normalize(E);
+    vec3 Half   = normalize(Eye+Light);
+    float f = 1.0;
+    
+    float Kd = max(dot(Normal,Light), 0.0);
+    
+    vec4 diffuse = Kd * light_diffuse;
+    
+    if(dot(Normal,Light)<0.0) f = 0.0;
+    
+    vec4 ambient  = material_ambient * light_ambient;
+    
+    gl_FragColor = ambient + diffuse;
+}

@@ -1,0 +1,6 @@
+varying vec4 vtxColor;
+varying vec4 baseColor;
+void main()
+{
+    gl_FragColor = vtxColor;
+}

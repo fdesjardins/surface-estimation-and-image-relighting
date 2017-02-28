@@ -1,0 +1,29 @@
+layout(triangles) in;
+layout(line_strip, max_vertices = 6) out;
+
+uniform float time;
+
+in vec4 baseColor[];
+in vec4 normal[];
+out vec4 vtxColor;
+ 
+void main() {
+    vec4 green = vec4(0.0, 1.0, 0.0, 1.0);
+    vec4 blue = vec4(0.0, 0.0, 1.0, 1.0);
+    float  mytime = time;
+    for (int i = 0; i < 3; i++)
+    {
+        gl_Position = gl_in[i].gl_Position +
+                      gl_ModelViewProjectionMatrix * (1+sin(.025*time))/20 * normal[i];
+        vtxColor = green;
+        EmitVertex();
+
+        gl_Position = gl_in[i].gl_Position +
+                      gl_ModelViewProjectionMatrix * .25 * normal[i] +
+                      gl_ModelViewProjectionMatrix * (1+sin(.025*time))/20 * normal[i];
+        vtxColor = blue;
+        EmitVertex();
+        
+        EndPrimitive();
+    }
+}

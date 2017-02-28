@@ -1,0 +1,71 @@
+#setup using ubuntu 12.04
+sudo apt-get install libamd2.2.0 libblas3gf libc6 libgcc1 libgfortran3 liblapack3gf libumfpack5.4.0 libstdc++6 build-essential gfortran python-all-dev libpng12-dev libfreetype6-dev cmake qt4-qmake libqt4-core libqt4-dev python-setuptools python-pip
+pip install numpy scipy matplotlib scikit-learn
+
+download and install luxrender
+
+
+
+#setup using mac with homebrew
+#note: untested
+
+#note: you may need libjpeg, libtiff before installing pil
+
+brew install pip
+sudo pip install numpy scipy matplotlib scikits.learn PyOpenGL pil
+
+download and install LuxRender for OSX (http://www.luxrender.net/en_GB/download)
+
+
+
+#usage (inc. shortcuts)
+
+**jittering**
+python main.py jitter 2 0
+
+**to reconstruct a surface**
+python scripts/predict.py /path/to/imagefile
+python main.py recon /path/to/imagefile
+
+**after reconstruction, you can create an image or video**
+**reconstruction yields a .lxs file, which can be edited
+and values such as light position change, and then rendered***
+python scripts/makevid.py
+
+**training the svms - uses data/2x2 image patches**
+python scripts/train.py
+
+**generating training data - careful, will overwrite existing**
+cd scripts/
+python gen_training_data.py
+
+**viewing an image**
+python scripts/view/view_image.py /path/to/imagefile
+
+
+
+NOTES:
+
+The OpenGL interface supports several commands depending on what you're doing: 
+(for example, normals are computed by default during the reconstruction)
+
+KEY			ACTION
+n			show normals
+p			show ppixel lighting
+w			show wireframe
+t			show passthrough (plain surface, no shading)
+v			show vertices
+o			show orthographic projection
+e			export mesh to luxrender
+c			view continuous reconstruction of current mesh
+
+left		prev jitter configuration
+right 		next jitter configuration
+up			next higher quad subdivision to use for jittering (careful! it blows up fast)
+down		next lower quad subdivision to use
+
+MOUSE		ACTION
+left		pan
+right		rotate
+middle		zoom
+scroll		zoom

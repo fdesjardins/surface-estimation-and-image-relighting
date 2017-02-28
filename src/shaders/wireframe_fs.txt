@@ -1,0 +1,7 @@
+uniform float time;
+varying vec4 vtxColor;
+varying vec4 baseColor;
+void main()
+{
+    gl_FragColor = vec4(gl_FragCoord.z) * vtxColor;
+}

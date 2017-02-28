@@ -1,0 +1,22 @@
+layout(triangles) in;
+layout(line_strip, max_vertices = 4) out;
+
+uniform float time;
+
+in vec4 baseColor[];
+in vec4 normal[];
+out vec4 vtxColor;
+ 
+void main() {
+  float  mytime = time;
+  for(int i = 0; i < gl_in.length(); i++) {
+        gl_Position = gl_in[i].gl_Position + vec4(0.0,0.0,-0.002,0.0);
+    vtxColor = vec4(0.3,0.7,0.3,1.0);
+    EmitVertex();
+  }
+  gl_Position = gl_in[0].gl_Position;
+  vtxColor = vec4(0.3,0.7,0.3,1.0);
+  EmitVertex();
+  
+  EndPrimitive();
+}

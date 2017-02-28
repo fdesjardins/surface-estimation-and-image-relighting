@@ -1,0 +1,27 @@
+uniform vec4 global_ambient;
+uniform vec4 light_ambient;
+uniform vec4 light_diffuse;
+uniform vec3 light_pos;
+uniform vec4 material_ambient;
+uniform vec4 material_diffuse;
+uniform float time;
+
+attribute vec3 vtx_pos;
+attribute vec3 vtx_norm;
+varying vec4 baseColor;
+void main()
+{
+    gl_Position = gl_ModelViewProjectionMatrix * vec4(vtx_pos, 1.0);
+    
+    vec3 EC_Light_location = gl_NormalMatrix * light_pos;
+    float diffuse_weight = max(0.0,
+        dot(normalize(EC_Light_location),
+            normalize(gl_NormalMatrix * vtx_norm)));
+    //float diffuse_weight = max(0.0, dot(normalize(light_pos),normalize(vtx_norm)));
+    
+    float dist = distance(vtx_pos, light_pos);
+    baseColor = clamp(((global_ambient * material_ambient) +
+                       (light_ambient  * material_ambient) +
+                        light_diffuse  * material_diffuse * diffuse_weight)/dist,
+                    0.0, 1.0);
+}

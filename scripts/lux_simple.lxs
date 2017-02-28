@@ -1,0 +1,54 @@
+#Global Information
+LookAt 0 -1 0 0 1 0 0 0 1
+#Camera "perspective" "float fov" [45]
+Camera "orthographic"
+
+Film "fleximage"
+        "integer xresolution" [8]
+        "integer yresolution" [8]
+        "integer haltspp" [64]
+        "string tonemapkernel" ["linear"]
+        "float linear_exposure" [25]
+
+Accelerator "qbvh"
+
+PixelFilter "mitchell"
+        "float xwidth" [2]
+        "float ywidth" [2]
+        "bool supersample" ["true"]
+
+Sampler "lowdiscrepancy"
+        "string pixelsampler" ["lowdiscrepancy"]
+
+#Scene Specific Information
+WorldBegin
+
+AttributeBegin
+        #CoordSysTransform "camera"
+        Translate $light_pos
+        LightSource "point"
+                "color L" [1 1 1]
+AttributeEnd
+
+AttributeBegin
+        Rotate 90 1 0 0
+        Translate 0.0 0.0 -15.0
+        Material "matte"
+            "color Kd" [0.5 0.5 0.5]
+        Shape "disk"
+            "float radius" [100]
+            "float height" [-1]
+AttributeEnd
+
+AttributeBegin
+   Translate 0.0 0.0 0.0
+   Rotate 90 1 0 0
+   Scale 1.15 1.15 1.0
+   Material "matte"
+        "color Kd" [0.7 0.7 0.7]
+
+    Shape "trianglemesh"
+        $mesh_data
+AttributeEnd
+
+WorldEnd
