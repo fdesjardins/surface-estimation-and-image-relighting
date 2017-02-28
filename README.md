@@ -109,30 +109,28 @@ The OpenGL interface supports several commands depending on what you're doing:
 (for example, normals are computed by default during the reconstruction)
 
 ```
-KEY		ACTION
-n			show normals
-p			show ppixel lighting
-w			show wireframe
-t			show passthrough (plain surface, no shading)
-v			show vertices
-o			show orthographic projection
-e			export mesh to luxrender
-c			view continuous reconstruction of current mesh
+KEY   ACTION
+n     show normals
+p     show ppixel lighting
+w     show wireframe
+t     show passthrough (plain surface, no shading)
+v     show vertices
+o     show orthographic projection
+e     export mesh to luxrender
+c     view continuous reconstruction of current mesh
+
+left   previous jitter configuration
+right  next jitter configuration
+up	   next higher quad subdivision to use for jittering (careful! blows up fast)
+down   next lower quad subdivision to use
 ```
 
 ```
-left		previous jitter configuration
-right 	next jitter configuration
-up			next higher quad subdivision to use for jittering (careful! blows up fast)
-down		next lower quad subdivision to use
-```
-
-```
-MOUSE		ACTION
-left		pan
-right		rotate
-middle	zoom
-scroll	zoom
+MOUSE   ACTION
+left    pan
+right   rotate
+middle  zoom
+scroll  zoom
 ```
 
 # License
