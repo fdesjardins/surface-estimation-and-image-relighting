@@ -1,5 +1,7 @@
 # Surface Estimation and Relighting
 
+<img src="https://github.com/user-attachments/assets/6f46adb0-b86d-4310-8afe-23e7046cf2f1" width="100%" />
+
 ## Overview
 
 Decomposing an image into its constituent parts is a complex problem. A scene model, such as a typical computer graphics model, contains all the objects and effects in a world in a compact representation. Objects in a scene are typically surfaces, but may be lights, cameras, or even volumetric regions. These surfaces serve the basis for our lighting model.
